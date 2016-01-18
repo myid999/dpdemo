@@ -2,21 +2,22 @@ package demo.dp.a.abstractfactory;
 /*
  * A Room Maker to test our simple Room Abstract Factory
  */
-public class RoomMaker  {
-    public Room CreateRoom(String roomType) {
+public class TestClient  {
+	
+    public RoomAbstractFactory CreateRoom(String roomType) {
         if(roomType.equals("LivingRoom")) {
-            return new LivingRoom();
+            return new LivingRoomFactory();
         } else if(roomType.equals("BedRoom")) {
-            return new BedRoom();
+            return new BedRoomFactory();
         } else {
-            return new LivingRoom();
+            return new LivingRoomFactory();
         }
     }
 
     public static void main(String[] args) {
-        RoomMaker myMaker = new RoomMaker();
+        TestClient myMaker = new TestClient();
         //-----  Create Living Room
-        Room myLivingRoom = myMaker.CreateRoom("LivingRoom");
+        RoomAbstractFactory myLivingRoom = myMaker.CreateRoom("LivingRoom");
         //-----  Create a door in living room
         Door livingDoor = myLivingRoom.makeDoor();
         System.out.println("Living room door name is:" + livingDoor.getName() );
@@ -25,7 +26,7 @@ public class RoomMaker  {
         System.out.println("Living room wall name is:" + livingWall.getName() );
 
         //-----  Create Bed Room
-        Room myBedRoom = myMaker.CreateRoom("BedRoom");
+        RoomAbstractFactory myBedRoom = myMaker.CreateRoom("BedRoom");
         //-----  Create a door in bedroom
         Door BedDoor = myBedRoom.makeDoor();
         System.out.println("Bed room door name is:" + BedDoor.getName() );
